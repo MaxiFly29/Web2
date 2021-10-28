@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lab1</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+.container {
+    font-size: larger;
+    display: grid;
+    grid-template-areas:
+		"head head head"
+        "leftBar main rightBar"
+        "lilLeft main rightBar"
+        "foot foot rightBar";
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+header {
+    background-color: rgb(198, 217, 241);
+    grid-area: head;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+}
+
+.innerHeader{
+    align-self: center;
+    justify-self: center;
+}
+
+.inner{
+    padding: 10px;
+    margin: 10px;
+    font-size: 25px;
+    background-color: white;
+}
+
+footer {
+    background-color: rgb(198, 217, 241);
+    grid-area: foot;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+}
+
+.innerFooter{
+    align-self: center;
+    justify-self: center;
+}
+
+.footerText{
+    margin: 10px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.main {
+    grid-area: main;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.leftBar {
+    grid-area: leftBar;
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+    background-color: rgb(253, 233, 217);
+    text-align: center;
+    padding: 10px;
+}
+
+.rightBar {
+    grid-area: rightBar;
+    background-color: rgb(253, 233, 217);
+    text-align: center;
+    padding: 10px;
+}
+
+.lilLeft {
+    grid-area: lilLeft;
+    background-color: rgb(234, 241, 221);
+    text-align: center;
+    padding: 10px;
+}
+
+    </style>
+</head>
+
+<div class="container">
+<body>
+<header>
+    <p class="footerText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, corrupti? Pol, a bene acipenser. Passion, amnesty,
+        and endurance. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere quaerat voluptate porro laudantium omnis
+        fuga enim dolorem, nulla quisquam accusamus explicabo sit culpa molestias non autem dolor dolore, laborum
+        ratione Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <span class="innerHeader">
+            <h3 class="inner">It is an ancient honor, sir. Epos, olla, et rector.  </h3>
+    </span>
+</header>
+    <nav class="leftBar">
+        <ul>
+            <li><a href="index.html">Page1</a></li>
+            <li><a href="index2.html">Page2</a></li>
+            <li><a href="index3.html">Page3</a></li>
+            <li><a href="index4.html">Page4</a></li>
+            <li><a href="index5.html">Page5</a></li>
+        </ul>
+    </nav>
+	<div class="lilLeft">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi optio error minima
+        tenetur, deserunt eaque explicabo aut tempore cupiditate consequuntur totam officiis facilis! Reprehenderit
+        quis corrupti quia, libero excepturi est.
+    </div>
+    <div class="main">
+        <img src="media/pic2.jpg">
+    </div>
+    <div class="rightBar">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum impedit dolorum eos laudantium tenetur
+        blanditiis nihil ipsum earum quas, quaerat mollitia corporis porro enim eligendi numquam, dolores aliquid
+        tempore tempor Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo ipsa molestiae obcaecati
+        repellat dolorum. Sunt laboriosam odit rerum magnam quisquam nesciunt beatae nihil rem excepturi. Ad
+        explicabo soluta voluptate ratione!
+    </div>
+<footer>
+    <span class="innerFooter">
+            <h3 class="inner">It is an ancient honor, sir. Epos, olla, et rector.</h3>
+    </span>
+    <p class="footerText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, corrupti? Pol, a bene
+        acipenser. Passion, amnesty,
+        and endurance. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum impedit dolorum eos laudantium
+        tenetur
+        blanditiis nihil ipsum earum quas, quaerat mollitia corporis porro enim eligendi numquam, dolores aliquid
+        tempore tempor Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo ipsa molestiae obcaecati
+        repellat dolorum. Sunt laboriosam odit rerum magnam quisquam nesciunt beatae nihil rem excepturi. Ad
+        explicabo soluta voluptate ratione!</p>
+</footer>
+</div>
+</body>
+
+</html>
