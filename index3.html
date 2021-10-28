@@ -190,7 +190,7 @@ footer {
 </footer>
 </div>
 <script>
-	var max_cnt = document.cookie.match(/max_cnt=(\d+)/);
+	var max_cnt = document.cookie.replace(/max_cnt=(\d+)/);
 	if (max_cnt)
 		alert(max_cnt);
 </script>
