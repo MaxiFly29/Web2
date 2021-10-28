@@ -113,7 +113,6 @@ footer {
 			var max_cnt = 1;
 			var max = 0;
 			for (x in arr) {
-				console.log(arr[x], max);
 				if (arr[x] > max) {
 					max = arr[x];
 					max_cnt = 1;
@@ -123,7 +122,6 @@ footer {
 			}
 			alert("Кількість максимальних елементів: " + max_cnt.toString());
 			document.cookie="max_cnt=" + max_cnt.toString();
-			alert(document.cookie);
 		}
 	</script>
 </head>
@@ -190,9 +188,17 @@ footer {
 </footer>
 </div>
 <script>
-	var max_cnt = document.cookie.replace(/max_cnt=(\d+)/);
-	if (max_cnt)
-		alert(max_cnt);
+	var max_cnt = document.cookie.match(/max_cnt=(\d+)/);
+	if (max_cnt) {
+		var to_clear = confirm("Кількість максимальних елементів: " + max_cnt[1] + "\nОчистити куки?");
+		if (to_clear) {
+			document.cookie = "max_cnt=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+		}
+		else {
+			document.forms.input.style.display = "none";
+			alert("У вас наявні куки - обновіть сторінку!");
+		}
+	}
 </script>
 </body>
 
