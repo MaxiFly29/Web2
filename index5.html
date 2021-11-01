@@ -12,20 +12,22 @@
     font-size: larger;
     display: grid;
     grid-template-areas:
-		"head head head"
         "leftBar main rightBar"
         "lilLeft main rightBar"
         "foot foot rightBar";
     grid-template-columns: 0.5fr 2fr 0.5fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
+
+textarea { resize: none; }
 
 header {
     background-color: rgb(198, 217, 241);
-    grid-area: head;
     display: grid;
     grid-template-columns: 2fr 1fr;
+
     align-items: center;
+	font-size: larger
 }
 
 .innerHeader{
@@ -63,6 +65,7 @@ footer {
 }
 
 .main {
+	align-items: center;
     grid-area: main;
     text-align: center;
     padding: 10px;
@@ -94,21 +97,56 @@ footer {
     padding: 10px;
 }
 
-    </style>
+</style>
+
+<script>
+    //onchange = new HTMLElement();
+    onchange = null;
+    function elementChange(elID) {
+        if (onchange != null)
+            return;
+        if (localStorage.getItem(elID) != null)
+            clearText(elID);
+        var el = document.getElementById(elID);
+        onchange = el;
+        inHTML = el.innerHTML;
+        el.innerHTML = 
+        "<textarea id=\"newText\" rows=\"10\" style=\"width: "+ el.clientWidth.toString() +"px; height: "+ el.clientHeight.toString() +"px; \">"+inHTML+"</textarea>\
+        <input type=\"submit\" onclick=\"elementChanged();\"></input>";
+    }
+
+    function elementChanged() {
+        onchange.innerHTML = document.getElementById("newText").value;
+        localStorage.setItem(onchange.id, onchange.innerHTML);
+        addClearButton(onchange);
+        onchange = null;
+    }
+
+    function addClearButton(el) {
+        el.insertAdjacentHTML("beforeend", "<br><a href='#' id='toDel"+el.id+"' onclick='clearText(\""+el.id+"\");'>Видалити зміни</a>");
+    }
+
+    function clearText(elID) {
+        localStorage.removeItem(elID);
+        document.getElementById('toDel'+elID).remove();
+        location.reload();
+    }
+</script>
+
 </head>
 
-<div class="container">
 <body>
 <header>
-    <p class="footerText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, corrupti? Pol, a bene acipenser. Passion, amnesty,
+    <p class="footerText" id="el1" ondblclick='elementChange("el1");'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, corrupti? Pol, a bene acipenser. Passion, amnesty,
         and endurance. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere quaerat voluptate porro laudantium omnis
         fuga enim dolorem, nulla quisquam accusamus explicabo sit culpa molestias non autem dolor dolore, laborum
         ratione Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
     <span class="innerHeader">
-            <h3 class="inner">It is an ancient honor, sir. Epos, olla, et rector.  </h3>
+		<h3 class="inner" id="s1">It is an ancient honor, sir.</h3>
     </span>
 </header>
-    <nav class="leftBar">
+<div class="container">
+    <div class="leftBar" id="el2" ondblclick='elementChange("el2");'>
         <ul>
             <li><a href="index.html">Page1</a></li>
             <li><a href="index2.html">Page2</a></li>
@@ -116,15 +154,19 @@ footer {
             <li><a href="index4.html">Page4</a></li>
             <li><a href="index5.html">Page5</a></li>
         </ul>
-    </nav>
-	<div class="lilLeft">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi optio error minima
+    </div>
+	<div class="lilLeft" id="el3" ondblclick='elementChange("el3");'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi optio error minima
         tenetur, deserunt eaque explicabo aut tempore cupiditate consequuntur totam officiis facilis! Reprehenderit
         quis corrupti quia, libero excepturi est.
     </div>
     <div class="main">
-        <img src="media/pic2.jpg">
+         <p class="footerText" id="el4" ondblclick='elementChange("el4");'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere quaerat voluptate porro laudantium omnis
+        fuga enim dolorem, nulla quisquam accusamus explicabo sit culpa molestias non autem dolor dolore, laborum
+        ratione Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, minus? Eos assumenda maxime
+        dignissimos. Eveniet at eligendi sint architecto ab error consectetur corporis repellat esse! Debitis facere
+        eaque voluptas nam! </p>
     </div>
-    <div class="rightBar">
+    <div class="rightBar" id="el5" ondblclick='elementChange("el5");'>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum impedit dolorum eos laudantium tenetur
         blanditiis nihil ipsum earum quas, quaerat mollitia corporis porro enim eligendi numquam, dolores aliquid
         tempore tempor Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo ipsa molestiae obcaecati
@@ -133,9 +175,9 @@ footer {
     </div>
 <footer>
     <span class="innerFooter">
-            <h3 class="inner">It is an ancient honor, sir. Epos, olla, et rector.</h3>
+		<h3 class="inner" id="s2">Epos, olla, et rector.</h3>
     </span>
-    <p class="footerText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, corrupti? Pol, a bene
+    <p class="footerText" id="el6" ondblclick='elementChange("el6");'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, corrupti? Pol, a bene
         acipenser. Passion, amnesty,
         and endurance. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum impedit dolorum eos laudantium
         tenetur
@@ -145,6 +187,38 @@ footer {
         explicabo soluta voluptate ratione!</p>
 </footer>
 </div>
+<script>
+    if (localStorage.getItem("el1") != null) {
+        var elem = document.getElementById("el1");
+        elem.innerHTML = localStorage.getItem("el1");
+        addClearButton(elem);
+    }
+    if (localStorage.getItem("el2") != null) {
+        var elem = document.getElementById("el2");
+        elem.innerHTML = localStorage.getItem("el2");
+        addClearButton(elem);
+    }
+    if (localStorage.getItem("el3") != null) {
+        var elem = document.getElementById("el3");
+        elem.innerHTML = localStorage.getItem("el3");
+        addClearButton(elem);
+    }
+    if (localStorage.getItem("el4") != null) {
+        var elem = document.getElementById("el4");
+        elem.innerHTML = localStorage.getItem("el4");
+        addClearButton(elem);
+    }
+    if (localStorage.getItem("el5") != null) {
+        var elem = document.getElementById("el5");
+        elem.innerHTML = localStorage.getItem("el5");
+        addClearButton(elem);
+    }
+    if (localStorage.getItem("el6") != null) {
+        var elem = document.getElementById("el6");
+        elem.innerHTML = localStorage.getItem("el6");
+        addClearButton(elem);
+    }
+</script>
 </body>
 
 </html>

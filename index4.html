@@ -12,20 +12,20 @@
     font-size: larger;
     display: grid;
     grid-template-areas:
-		"head head head"
         "leftBar main rightBar"
         "lilLeft main rightBar"
         "foot foot rightBar";
     grid-template-columns: 0.5fr 2fr 0.5fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 header {
     background-color: rgb(198, 217, 241);
-    grid-area: head;
     display: grid;
     grid-template-columns: 2fr 1fr;
+
     align-items: center;
+	font-size: larger
 }
 
 .innerHeader{
@@ -63,8 +63,9 @@ footer {
 }
 
 .main {
+	align-items: center;
     grid-area: main;
-    align-items: center;
+    text-align: center;
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -95,10 +96,28 @@ footer {
 }
 
     </style>
+	
+	<script>
+        is_blured = false;
+        function blurEvent() {
+            if (is_blured) return;
+            is_blured = true;
+            var color = localStorage.getItem("colorBack");
+            while (color == null) {
+                color = prompt("Введіть кольор фону", "red");
+                localStorage.setItem("colorBack", color);
+            }
+            document.getElementById("colorToChange").style.backgroundColor=color;
+        }
+
+        function clearCache() {
+            localStorage.removeItem("colorBack");
+            document.getElementById("toDelete").remove();
+        }
+	</script>
 </head>
 
-<div class="container">
-<body>
+<body onblur="blurEvent();">
 <header>
     <p class="footerText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, corrupti? Pol, a bene acipenser. Passion, amnesty,
         and endurance. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere quaerat voluptate porro laudantium omnis
@@ -108,7 +127,8 @@ footer {
             <h3 class="inner">It is an ancient honor, sir. Epos, olla, et rector.  </h3>
     </span>
 </header>
-    <nav class="leftBar">
+<div class="container">
+    <nav class="leftBar" id="colorToChange">
         <ul>
             <li><a href="index.html">Page1</a></li>
             <li><a href="index2.html">Page2</a></li>
@@ -122,9 +142,11 @@ footer {
         quis corrupti quia, libero excepturi est.
     </div>
     <div class="main">
-        <video width="480" height="360" controls>
-            <source src="media/starwars.mp4" type="video/webm">
-        </video>
+         <p class="footerText">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere quaerat voluptate porro laudantium omnis
+        fuga enim dolorem, nulla quisquam accusamus explicabo sit culpa molestias non autem dolor dolore, laborum
+        ratione Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, minus? Eos assumenda maxime
+        dignissimos. Eveniet at eligendi sint architecto ab error consectetur corporis repellat esse! Debitis facere
+        eaque voluptas nam! </p>
     </div>
     <div class="rightBar">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum impedit dolorum eos laudantium tenetur
@@ -147,6 +169,14 @@ footer {
         explicabo soluta voluptate ratione!</p>
 </footer>
 </div>
+
+<script>
+    //prevHTML = document.getElementById("colorToChange").innerHTML;
+    if (localStorage.getItem("colorBack") != null) {
+        document.getElementById("colorToChange").firstElementChild.insertAdjacentHTML("beforeend","<li id=\"toDelete\"><a href=\"#\" onclick=\"clearCache();\">Clear cache</a></li>")
+    }
+</script>
+
 </body>
 
 </html>
