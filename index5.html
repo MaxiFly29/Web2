@@ -129,7 +129,7 @@ footer {
     function clearText(elID) {
         localStorage.removeItem(elID);
         document.getElementById('toDel'+elID).remove();
-        location.reload();
+        document.getElementById(elID).innerHTML = localStorage.getItem("def_"+elID);
     }
 </script>
 
@@ -193,30 +193,48 @@ footer {
         elem.innerHTML = localStorage.getItem("el1");
         addClearButton(elem);
     }
+    else {
+        localStorage.setItem("def_el1", document.getElementById("el1").innerHTML);
+    }
     if (localStorage.getItem("el2") != null) {
         var elem = document.getElementById("el2");
         elem.innerHTML = localStorage.getItem("el2");
         addClearButton(elem);
+    }
+    else {
+        localStorage.setItem("def_el2", document.getElementById("el2").innerHTML);
     }
     if (localStorage.getItem("el3") != null) {
         var elem = document.getElementById("el3");
         elem.innerHTML = localStorage.getItem("el3");
         addClearButton(elem);
     }
+    else {
+        localStorage.setItem("def_el3", document.getElementById("el3").innerHTML);
+    }
     if (localStorage.getItem("el4") != null) {
         var elem = document.getElementById("el4");
         elem.innerHTML = localStorage.getItem("el4");
         addClearButton(elem);
+    }
+    else {
+        localStorage.setItem("def_el4", document.getElementById("el4").innerHTML);
     }
     if (localStorage.getItem("el5") != null) {
         var elem = document.getElementById("el5");
         elem.innerHTML = localStorage.getItem("el5");
         addClearButton(elem);
     }
+    else {
+        localStorage.setItem("def_el5", document.getElementById("el5").innerHTML);
+    }
     if (localStorage.getItem("el6") != null) {
         var elem = document.getElementById("el6");
         elem.innerHTML = localStorage.getItem("el6");
         addClearButton(elem);
+    }
+    else {
+        localStorage.setItem("def_el6", document.getElementById("el6").innerHTML);
     }
 </script>
 </body>
